@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Bhaiya ❤️</title>
+
+<style>
+/* =========================================================
+   HAPPY BIRTHDAY BROTHER
+   One-file local website. No internet/library required.
+========================================================= */
+
+:root {
+  --accent: #b3131b;
+  --accent2: #ff3d4d;
+  --accent-rgb: 179,19,27;
+  --bg: #050505;
+  --panel: rgba(255,255,255,.055);
+  --panel-strong: rgba(255,255,255,.085);
+  --text: #f4f4f4;
+  --muted: #a9a9a9;
+  --line: rgba(255,255,255,.09);
+  --shadow: 0 28px 90px rgba(0,0,0,.55);
+}
+
+body.green {
+  --accent: #08744a;
+  --accent2: #1be09a;
+  --accent-rgb: 8,116,74;
+}
+
+body.blue {
+  --accent: #153e8a;
+  --accent2: #3d8bff;
+  --accent-rgb: 21,62,138;
+}
+
+body.purple {
+  --accent: #5a1e78;
+  --accent2: #c164ff;
+  --accent-rgb: 90,30,120;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(var(--accent-rgb), .22), transparent 28%),
+    radial-gradient(circle at 84% 84%, rgba(var(--accent-rgb), .12), transparent 34%),
+    #020202;
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  overflow-x: hidden;
+  transition: background .45s ease;
+}
+
+button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+#bgGlow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -8;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,20%), rgba(var(--accent-rgb), .18), transparent 28%);
+  transition: background .15s ease;
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: -7;
+  pointer-events: none;
+  opacity: .035;
+  background-image:
+    radial-gradient(rgba(255,255,255,.8) 1px, transparent 1px);
+  background-size: 4px 4px;
+  mix-blend-mode: screen;
+}
+
+.grid {
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  opacity: .085;
+  background:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 78%, transparent);
+}
+
+/* ---------- app chrome ---------- */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  background: rgba(0,0,0,.62);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  background: none;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: .16em;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.brand span { color: var(--accent2); }
+
+.top-actions { display:flex; gap: 8px; align-items:center; }
+
+.icon-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  color: #fff;
+  cursor: pointer;
+  display:grid;
+  place-items:center;
+  transition: .28s ease;
+}
+.icon-btn:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 0 22px rgba(var(--accent-rgb),.25); }
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #ddd;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: .28s ease;
+  margin-bottom: 26px;
+}
+.back:hover { border-color: var(--accent); color: #fff; transform: translateX(-3px); }
+
+/* ---------- pages ---------- */
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding-top: 72px;
+  animation: pageIn .65s cubic-bezier(.2,.75,.2,1);
+}
+.page.active { display: block; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  width: min(1180px, 90vw);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 88px 0 100px;
+}
+
+.section-head {
+  margin-bottom: 38px;
+  max-width: 760px;
+}
+
+.eyebrow {
+  color: var(--accent2);
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+h1,h2,h3 { line-height: .98; }
+
+.section-head h2 {
+  font-size: clamp(42px, 6vw, 78px);
+  margin: 13px 0 18px;
+}
+
+.section-head p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.hero {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  align-items: center;
+  padding: 56px 0 90px;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.06fr .94fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-copy .eyebrow { margin-bottom: 20px; }
+
+.hero-title {
+  font-size: clamp(64px, 10vw, 132px);
+  letter-spacing: -.05em;
+  margin-bottom: 24px;
+  text-shadow: 0 0 34px rgba(var(--accent-rgb),.42);
+}
+
+.hero-title .hot { color: var(--accent2); }
+
+.hero-sub {
+  max-width: 680px;
+  color: #b8b8b8;
+  line-height: 1.85;
+  font-size: 18px;
+}
+
+.hero-buttons { margin-top: 32px; display:flex; flex-wrap:wrap; gap: 12px; }
+
+.primary, .secondary {
+  border-radius: 999px;
+  padding: 14px 21px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.primary {
+  border: 1px solid var(--accent);
+  background: linear-gradient(135deg, var(--accent), #1a0909);
+  color: #fff;
+  box-shadow: 0 0 30px rgba(var(--accent-rgb),.16);
+}
+.primary:hover { transform: translateY(-3px); box-shadow: 0 10px 34px rgba(var(--accent-rgb),.25); }
+
+.secondary {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.025);
+  color: #ddd;
+}
+.secondary:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+.hero-frame {
+  border-radius: 28px;
+  padding: 12px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.015));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  transform: rotate(2deg);
+  transition: .5s ease;
+}
+.hero-frame:hover { transform: rotate(0) translateY(-5px); }
+
+.hero-frame img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  filter: saturate(.93) contrast(1.02);
+}
+
+.hero-note {
+  margin-top: 12px;
+  padding: 15px 16px 3px;
+  color: #8f8f8f;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ---------- card system ---------- */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  min-height: 230px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, var(--panel-strong), rgba(255,255,255,.02));
+  cursor: pointer;
+  transition: .38s cubic-bezier(.2,.75,.2,1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 180px; height: 180px;
+  right: -70px; bottom: -80px;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb),.12);
+  filter: blur(10px);
+  transition: .45s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(var(--accent-rgb), .8);
+  box-shadow: 0 18px 55px rgba(0,0,0,.45);
+}
+
+.card:hover::before { transform: scale(1.35); }
+
+.card-icon { font-size: 42px; margin-bottom: 24px; }
+.card h3 { font-size: 28px; margin-bottom: 12px; }
+.card p { color: var(--muted); line-height: 1.7; }
+
+.arrow {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  color: var(--accent2);
+  font-size: 22px;
+}
+
+/* ---------- gallery ---------- */
+
+.filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.filter {
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  color: #bdbdbd;
+  border-radius: 999px;
+  padding: 9px 13px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+.filter.active, .filter:hover { border-color: var(--accent); color:#fff; background: rgba(var(--accent-rgb),.08); }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.photo-card {
+  display:none;
+  position: relative;
+  overflow:hidden;
+  aspect-ratio: 4/5;
+  border-radius: 18px;
+  border:1px solid var(--line);
+  background:#0a0a0a;
+  cursor:pointer;
+}
+.photo-card.loaded { display:block; }
+
+.photo-card img {
+  width:100%; height:100%;
+  display:block;
+  object-fit:cover;
+  transition:.5s ease;
+}
+.photo-card:hover img { transform: scale(1.07); }
+
+.photo-shade {
+  position:absolute; inset:auto 0 0 0;
+  padding: 42px 14px 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+}
+.photo-shade span {
+  color:#fff;
+  font-size:13px;
+}
+.photo-shade small {
+  display:block;
+  margin-top:4px;
+  color:#b0b0b0;
+}
+
+.empty-note {
+  display:none;
+  padding: 34px;
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  color:#888;
+  line-height:1.7;
+}
+
+/* ---------- memory detail ---------- */
+
+.detail {
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 40px;
+  align-items:center;
+}
+.detail-image {
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#0b0b0b;
+}
+.detail-image img { width:100%; display:block; max-height: 72vh; object-fit:contain; }
+.detail-copy h2 { font-size: clamp(48px,6vw,78px); margin: 10px 0 18px; }
+.detail-copy p { color:var(--muted); line-height:1.9; font-size:17px; }
+
+.detail-meta {
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  color:#8c8c8c;
+  font-size:13px;
+}
+
+/* ---------- letters ---------- */
+
+.letter-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+
+.envelope {
+  min-height: 260px;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:
+    linear-gradient(145deg, rgba(var(--accent-rgb),.08), rgba(255,255,255,.025));
+  cursor:pointer;
+  transition:.35s ease;
+}
+.envelope:hover { transform:translateY(-7px); border-color:var(--accent); }
+.envelope .icon { font-size:45px; margin-bottom:20px; }
+.envelope h3 { font-size:27px; margin-bottom:10px; }
+.envelope p { color:var(--muted); line-height:1.7; }
+
+/* ---------- actual letter ---------- */
+
+.paper {
+  max-width: 880px;
+  margin:0 auto;
+  padding:48px clamp(24px,5vw,58px);
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.018));
+  box-shadow:var(--shadow);
+}
+.paper h2 { font-size: clamp(40px,6vw,70px); margin: 10px 0 28px; }
+.paper p { color:#c5c5c5; font-size:18px; line-height:2; margin-top:14px; }
+.signature { color:var(--accent2) !important; font-size:22px !important; margin-top:28px !important; }
+
+/* ---------- timeline ---------- */
+
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position:relative;
+}
+.timeline::before {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:linear-gradient(var(--accent), transparent);
+}
+.moment {
+  width:50%;
+  padding: 18px 38px;
+  position:relative;
+}
+.moment:nth-child(even) { margin-left:50%; }
+.dot {
+  width:13px; height:13px;
+  border-radius:50%;
+  background:var(--accent2);
+  position:absolute; top:31px;
+  box-shadow:0 0 20px rgba(var(--accent-rgb),.75);
+}
+.moment:nth-child(odd) .dot { right:-6px; }
+.moment:nth-child(even) .dot { left:-6px; }
+.moment-box {
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:22px;
+  background:rgba(255,255,255,.035);
+}
+.moment-box .year { color:var(--accent2); font-size:12px; letter-spacing:.18em; }
+.moment-box h3 { font-size:26px; margin:9px 0 9px; }
+.moment-box p { color:var(--muted); line-height:1.7; }
+
+/* ---------- video ---------- */
+
+.video-shell {
+  width:min(960px,100%);
+  margin:0 auto;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid var(--accent);
+  box-shadow: 0 0 55px rgba(var(--accent-rgb),.2);
+  background:#000;
+}
+.video-shell video { width:100%; display:block; }
+
+/* ---------- surprise ---------- */
+
+.surprise-wrap { max-width: 900px; margin:0 auto; text-align:center; }
+
+.gift {
+  font-size: 140px;
+  cursor:pointer;
+  display:inline-block;
+  margin: 18px 0 22px;
+  animation: giftFloat 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 28px rgba(var(--accent-rgb),.5));
+}
+@keyframes giftFloat {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.reveal {
+  display:none;
+  margin:25px auto 0;
+  max-width:700px;
+  padding:32px;
+  border-radius:20px;
+  border:1px solid var(--accent);
+  background:rgba(var(--accent-rgb),.075);
+  animation: pageIn .7s ease;
+}
+.reveal.show { display:block; }
+.reveal h2 { color:var(--accent2); font-size:52px; margin-bottom:18px; }
+.reveal p { color:#c5c5c5; line-height:1.9; font-size:18px; }
+
+/* ---------- music dock ---------- */
+
+.music-dock {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:2000;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.music-dock button {
+  width:54px; height:54px;
+  border-radius:50%;
+  border:1px solid var(--accent);
+  background:#060606;
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 0 26px rgba(var(--accent-rgb),.22);
+}
+.music-dock span {
+  max-width:180px;
+  padding:9px 12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(0,0,0,.74);
+  color:#aaa;
+  font-size:12px;
+}
+
+/* ---------- balloons ---------- */
+
+.balloon {
+  position:fixed;
+  bottom:-130px;
+  width:46px;
+  height:60px;
+  border-radius:50% 50% 46% 46%;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.64;
+  filter: blur(.1px);
+  animation: balloonUp linear forwards;
+}
+.balloon::before {
+  content:"";
+  position:absolute;
+  top:58px;
+  left:50%;
+  width:1px; height:115px;
+  background:rgba(255,255,255,.28);
+}
+.balloon::after {
+  content:"";
+  position:absolute;
+  left:20px; bottom:-5px;
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-top:8px solid rgba(255,255,255,.35);
+}
+@keyframes balloonUp {
+  0% { transform:translateY(0) translateX(0) rotate(-4deg); }
+  35% { transform:translateY(-40vh) translateX(12px) rotate(4deg); }
+  70% { transform:translateY(-78vh) translateX(-14px) rotate(-3deg); }
+  100% { transform:translateY(-120vh) translateX(10px) rotate(4deg); opacity:0; }
+}
+
+/* ---------- confetti ---------- */
+
+.confetti {
+  position:fixed;
+  top:-12px;
+  width:8px; height:12px;
+  z-index:4000;
+  pointer-events:none;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { transform:translate3d(var(--dx),110vh,0) rotate(760deg); opacity:0; }
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  padding:65px 0 90px;
+  text-align:center;
+  border-top:1px solid var(--line);
+  color:#5d5d5d;
+}
+footer strong { color:var(--accent2); }
+
+/* ---------- theme picker ---------- */
+
+.theme-picker {
+  position:fixed;
+  top:78px;
+  right:18px;
+  z-index:1900;
+  display:none;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(0,0,0,.86);
+  backdrop-filter:blur(16px);
+  gap:8px;
+}
+.theme-picker.show { display:flex; }
+.swatch {
+  width:30px; height:30px;
+  border-radius:50%;
+  border:2px solid #555;
+  cursor:pointer;
+}
+.swatch.red{background:#b3131b}.swatch.green{background:#08744a}.swatch.blue{background:#153e8a}.swatch.purple{background:#5a1e78}
+
+/* ---------- image lightbox ---------- */
+
+.lightbox {
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  background:rgba(0,0,0,.94);
+}
+.lightbox.show { display:flex; }
+.lightbox img {
+  max-width:94vw;
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:16px;
+  border:1px solid var(--line);
+  box-shadow:0 0 70px rgba(var(--accent-rgb),.35);
+}
+.lightbox .close {
+  position:absolute;
+  top:20px; right:26px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  width:44px; height:44px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:26px;
+}
+
+/* ---------- no JS / broken assets ---------- */
+
+.fallback {
+  max-width: 760px;
+  margin: 30px auto 0;
+  padding: 15px 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  color:#777;
+  line-height:1.6;
+  font-size:13px;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .hero-layout, .detail { grid-template-columns:1fr; }
+  .hero-frame { width:min(520px,100%); margin:0 auto; order:-1; }
+  .card-grid, .letter-grid { grid-template-columns:1fr 1fr; }
+  .gallery { grid-template-columns:repeat(3,1fr); }
+  .timeline::before { left:10px; }
+  .moment, .moment:nth-child(even) { width:100%; margin-left:0; padding-left:38px; }
+  .moment:nth-child(odd) .dot, .moment:nth-child(even) .dot { left:4px; right:auto; }
+}
+
+@media (max-width: 620px) {
+  .topbar { height:64px; }
+  .page { padding-top:64px; }
+  .top-actions { gap:5px; }
+  .icon-btn { width:38px; height:38px; }
+  .hero-title { font-size:64px; }
+  .hero-sub { font-size:16px; }
+  .section { padding:65px 0 75px; }
+  .card-grid, .letter-grid { grid-template-columns:1fr; }
+  .gallery { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .photo-card { border-radius:13px; }
+  .music-dock span { display:none; }
+  .gift { font-size:105px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="bgGlow"></div>
+<div class="grid"></div>
+<div class="noise"></div>
+
+<header class="topbar">
+  <button class="brand" onclick="openPage('home')">
+    FOR MY <span>BHAIYA ❤️</span>
+  </button>
+
+  <div class="top-actions">
+    <button class="icon-btn" title="Themes" onclick="toggleThemes()">🎨</button>
+    <button class="icon-btn" title="Home" onclick="openPage('home')">⌂</button>
+  </div>
+</header>
+
+<div id="themePicker" class="theme-picker">
+  <button class="swatch red" title="Blood Red" onclick="setTheme('red')"></button>
+  <button class="swatch green" title="Dark Green" onclick="setTheme('green')"></button>
+  <button class="swatch blue" title="Navy Blue" onclick="setTheme('blue')"></button>
+  <button class="swatch purple" title="Deep Purple" onclick="setTheme('purple')"></button>
+</div>
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+<main id="home" class="page active">
+  <section class="hero">
+    <div class="container hero-layout">
+      <div class="hero-copy">
+        <div class="eyebrow">A little corner of the internet, made just for you</div>
+        <h1 class="hero-title">HAPPY<br><span class="hot">BIRTHDAY.</span></h1>
+        <p class="hero-sub">
+          For the brother who has been part of the noise, the laughter,
+          the random memories, the arguments, the adventures —
+          and so many of the moments that became unforgettable.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="primary" onclick="startExperience()">✨ Enter the story</button>
+          <button class="secondary" onclick="openPage('memories')">📸 Open memories</button>
+        </div>
+
+        <div class="fallback">
+          Tip: this website works locally. Keep this HTML file beside your
+          <strong>img1, img2, ...</strong> files, <strong>song.mp3</strong>, and
+          <strong>video1.mp4</strong>. Missing images are automatically skipped.
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-frame">
+          <img src="img6.jpeg" alt="A memory" onerror="heroFallback(this)">
+          <div class="hero-note">One photo. A thousand memories. ❤️</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Made with <strong>love, memories & a little bit of chaos.</strong><br><br>
+    Happy Birthday, Bhaiya. 🎂
+  </footer>
+</main>
+
+<!-- =====================================================
+     CHOOSE / STORY HUB
+===================================================== -->
+<section id="story" class="page">
+  <div class="container section">
+    <button class="back" onclick="goBack()">← Back</button>
+
+    <div class="section-head">
+      <div class="eyebrow">THE STORY HUB</div>
+      <h2>Choose your next chapter.</h2>
+      <p>
+        Don't rush. Open whatever catches your eye.
+        Some doors lead to memories, some to words,
+        and one leads to the final surprise.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card" onclick="openPage('memories')">
+        <div>
+          <div class="card-icon">📸</div>
+          <h3>Memory Vault</h3>
+          <p>Browse the photographs and open any memory full-screen.</p>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+
+      <div class="card" onclick="openPage('letters')">
+        <div>
+          <div class="card-icon">💌</div>
+          <h3>Letters</h3>
+          <p>Three little letters. Open them one at a time.</p>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+
+      <div class="card" onclick="openPage('timeline')">
+        <div>
+          <div class="card-icon">🕰️</div>
+          <h3>Our Timeline</h3>
+          <p>A simple journey from the old days to right now.</p>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+
+      <div class="card" onclick="openPage('reasons')">
+        <div>
+          <div class="card-icon">🖤</div>
+          <h3>Why You're Special</h3>
+          <p>A few things that make having you as a brother special.</p>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+
+      <div class="card" onclick="openPage('movie')">
+        <div>
+          <div class="card-icon">🎬</div>
+          <h3>Our Little Movie</h3>
+          <p>Watch the video you added to the website.</p>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+
+      <div class="card" onclick="openPage('surprise')">
+        <div>
+          <div class="card-icon">🎁</div>
+          <h3>Final Door</h3>
+          <p>There is one last thing waiting for you.</p>
+        </div>
+        <div class="arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MEMORY VAULT
+===================================================== -->
+<section id="memories" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('story')">← Story hub</button>
+
+    <div class="section-head">
+      <div class="eyebrow">MEMORY VAULT</div>
+      <h2>Pick a shelf.</h2>
+      <p>
+        These shelves are just filters. Add more files later using names like
+        img15.jpg, img16.png, img17.jpeg and they'll be picked up automatically.
+      </p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" onclick="filterGallery('all', this)">All</button>
+      <button class="filter" onclick="filterGallery('throwback', this)">The old days</button>
+      <button class="filter" onclick="filterGallery('family', this)">Together</button>
+      <button class="filter" onclick="filterGallery('portraits', this)">Portraits</button>
+      <button class="filter" onclick="filterGallery('birthday', this)">Birthday posts</button>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+
+    <div id="emptyNote" class="empty-note">
+      Add image files beside this HTML file using names such as
+      <strong>img1.jpg</strong>, <strong>img2.png</strong>, <strong>img3.jpeg</strong>...
+      and refresh the page.
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MEMORY DETAIL
+===================================================== -->
+<section id="memoryDetail" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('memories')">← Memory vault</button>
+
+    <div class="detail">
+      <div class="detail-image">
+        <img id="detailImage" alt="Memory">
+      </div>
+
+      <div class="detail-copy">
+        <div class="eyebrow" id="detailCategory">MEMORY</div>
+        <h2 id="detailTitle">A little moment.</h2>
+        <p id="detailText">
+          Some photographs are proof that ordinary days can become
+          extraordinary memories.
+        </p>
+        <div class="detail-meta" id="detailMeta"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     LETTERS
+===================================================== -->
+<section id="letters" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('story')">← Story hub</button>
+
+    <div class="section-head">
+      <div class="eyebrow">PRIVATE LETTERS</div>
+      <h2>Pick an envelope.</h2>
+      <p>These are written to feel like little time capsules.</p>
+    </div>
+
+    <div class="letter-grid">
+      <div class="envelope" onclick="openPage('letter1')">
+        <div class="icon">💌</div>
+        <h3>Read this first</h3>
+        <p>The one I would say out loud if I wasn't busy pretending to be cool.</p>
+      </div>
+
+      <div class="envelope" onclick="openPage('letter2')">
+        <div class="icon">🖤</div>
+        <h3>Open on a bad day</h3>
+        <p>A reminder that you don't have to have everything figured out.</p>
+      </div>
+
+      <div class="envelope" onclick="openPage('letter3')">
+        <div class="icon">✨</div>
+        <h3>Open years from now</h3>
+        <p>For the future version of you who will look back at this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     LETTER 1
+===================================================== -->
+<section id="letter1" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('letters')">← Letters</button>
+
+    <article class="paper">
+      <div class="eyebrow">LETTER ONE</div>
+      <h2>For my brother.</h2>
+      <p>Dear Bhaiya,</p>
+      <p>
+        I know we don't always stop and put everything into words,
+        but I wanted this birthday to have at least one place where
+        I did.
+      </p>
+      <p>
+        Thank you for all the normal days that somehow turned into
+        good memories — the jokes, the conversations, the random
+        nonsense, and even the moments where we completely annoyed
+        each other.
+      </p>
+      <p>
+        Having a brother means having someone who is part of your story
+        long before you realise how important that story is.
+      </p>
+      <p>So today, I just want to say: I am really glad you're my brother.</p>
+      <p class="signature">Happy birthday. ❤️</p>
+    </article>
+  </div>
+</section>
+
+<!-- =====================================================
+     LETTER 2
+===================================================== -->
+<section id="letter2" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('letters')">← Letters</button>
+
+    <article class="paper">
+      <div class="eyebrow">LETTER TWO</div>
+      <h2>For the difficult days.</h2>
+      <p>
+        Some days will feel messy. Some plans will fail. Some things
+        won't make sense immediately.
+      </p>
+      <p>
+        On those days, remember that one bad chapter does not define
+        the whole story.
+      </p>
+      <p>
+        Keep going at your own pace. Rest when you need to. Laugh when
+        you can. And remember that there are people who are genuinely
+        happy that you exist.
+      </p>
+      <p class="signature">Always cheering for you. 🖤</p>
+    </article>
+  </div>
+</section>
+
+<!-- =====================================================
+     LETTER 3
+===================================================== -->
+<section id="letter3" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('letters')">← Letters</button>
+
+    <article class="paper">
+      <div class="eyebrow">LETTER THREE</div>
+      <h2>To future you.</h2>
+      <p>
+        One day you might open this page and laugh at how dramatic
+        this little website was.
+      </p>
+      <p>
+        I hope you also smile at the photographs, remember the people,
+        and realise how many moments were worth keeping.
+      </p>
+      <p>
+        Whatever life looks like by then, I hope you are proud of the
+        person you became.
+      </p>
+      <p class="signature">See you in the next chapter. ✨</p>
+    </article>
+  </div>
+</section>
+
+<!-- =====================================================
+     TIMELINE
+===================================================== -->
+<section id="timeline" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('story')">← Story hub</button>
+
+    <div class="section-head">
+      <div class="eyebrow">THE YEARS</div>
+      <h2>Our story so far.</h2>
+      <p>Replace the placeholder moments with your own dates and stories whenever you like.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="moment">
+        <div class="dot"></div>
+        <div class="moment-box">
+          <div class="year">THEN</div>
+          <h3>The Beginning</h3>
+          <p>Before any of these photos existed, there was simply us — growing up side by side.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="dot"></div>
+        <div class="moment-box">
+          <div class="year">CHAOS ERA 😂</div>
+          <h3>The Endless Nonsense</h3>
+          <p>The jokes, little fights, silly moments and conversations that somehow became memories.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="dot"></div>
+        <div class="moment-box">
+          <div class="year">MEMORIES</div>
+          <h3>The Adventures</h3>
+          <p>Random places, family moments, photographs and all those ordinary days that became special.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="dot"></div>
+        <div class="moment-box">
+          <div class="year">TODAY ❤️</div>
+          <h3>Another Birthday</h3>
+          <p>And another chapter gets added to the story. Happy birthday, Bhaiya.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     REASONS
+===================================================== -->
+<section id="reasons" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('story')">← Story hub</button>
+
+    <div class="section-head">
+      <div class="eyebrow">THE IMPORTANT STUFF</div>
+      <h2>Why you're special.</h2>
+      <p>
+        Not a list of superpowers. Just a few things that actually matter.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>You're family.</h3>
+        <p>That means there is a bond here that doesn't disappear when the mood changes.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">😂</div>
+        <h3>You make life funnier.</h3>
+        <p>There is always some ridiculous comment, joke or moment waiting around the corner.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <h3>You have your own fire.</h3>
+        <p>You are building your own story, and that's worth being proud of.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>You show up.</h3>
+        <p>The little moments where someone is simply there are often the ones people remember most.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌙</div>
+        <h3>You are more than one bad day.</h3>
+        <p>There is a whole person behind every difficult moment. Never forget that.</p>
+      </div>
+
+      <div class="card" onclick="openPage('surprise')">
+        <div class="card-icon">🎁</div>
+        <h3>And finally...</h3>
+        <p>You made it this far. Maybe the final door is worth opening.</p>
+        <div class="arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     MOVIE
+===================================================== -->
+<section id="movie" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('story')">← Story hub</button>
+
+    <div class="section-head">
+      <div class="eyebrow">THE LITTLE MOVIE</div>
+      <h2>Press play.</h2>
+      <p>Your uploaded video is already connected to this page.</p>
+    </div>
+
+    <div class="video-shell">
+      <video id="birthdayVideo" controls playsinline preload="metadata">
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support MP4 video.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     SURPRISE
+===================================================== -->
+<section id="surprise" class="page">
+  <div class="container section">
+    <button class="back" onclick="openPage('story')">← Story hub</button>
+
+    <div class="surprise-wrap">
+      <div class="eyebrow">THE FINAL DOOR</div>
+      <h2 style="font-size:clamp(48px,7vw,92px); margin:13px 0 10px;">One last thing...</h2>
+      <p style="color:#999;line-height:1.8;">
+        Click the gift. Turn on the music. Let the website do its thing. 🎈
+      </p>
+
+      <div class="gift" onclick="openGift()" title="Open the gift">🎁</div>
+
+      <div id="reveal" class="reveal">
+        <h2>HAPPY BIRTHDAY! 🎉</h2>
+        <p>
+          No matter how much time passes, I hope you always remember
+          the people and moments that made your story special.
+        </p>
+        <p style="margin-top:15px;">
+          May the next chapter bring you more laughter,
+          more adventures, more reasons to be proud —
+          and plenty of photographs worth putting on this website.
+        </p>
+        <p style="margin-top:20px;color:var(--accent2);">
+          Happy birthday, Bhaiya. ❤️
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="music-dock">
+  <span id="musicStatus">🎵 soundtrack ready</span>
+  <button id="musicButton" onclick="toggleMusic()" title="Play / pause music">🎵</button>
+</div>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <button class="close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImage" alt="Full-size memory">
+</div>
+
+<script>
+/* =========================================================
+   NAVIGATION
+========================================================= */
+const pageHistory = [];
+let currentPage = "home";
+
+function openPage(id) {
+  if (currentPage !== id) pageHistory.push(currentPage);
+
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const next = document.getElementById(id);
+
+  if (!next) {
+    document.getElementById("home").classList.add("active");
+    currentPage = "home";
+  } else {
+    next.classList.add("active");
+    currentPage = id;
+  }
+
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+function goBack() {
+  const previous = pageHistory.pop();
+  if (previous) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    const page = document.getElementById(previous);
+    if (page) {
+      page.classList.add("active");
+      currentPage = previous;
+      window.scrollTo({top:0, behavior:"smooth"});
+      return;
+    }
+  }
+  openPage("home");
+}
+
+/* =========================================================
+   START EXPERIENCE
+========================================================= */
+function startExperience() {
+  openPage("story");
+  playMusic();
+}
+
+/* =========================================================
+   MUSIC
+========================================================= */
+const music = new Audio("song.mp3");
+music.loop = true;
+music.preload = "metadata";
+let musicPlaying = false;
+
+music.addEventListener("error", () => {
+  document.getElementById("musicStatus").textContent = "⚠ add song.mp3 beside this HTML";
+});
+
+music.addEventListener("play", () => {
+  musicPlaying = true;
+  document.getElementById("musicButton").textContent = "🔊";
+  document.getElementById("musicStatus").textContent = "🎵 soundtrack playing";
+});
+
+music.addEventListener("pause", () => {
+  musicPlaying = false;
+  document.getElementById("musicButton").textContent = "🎵";
+  document.getElementById("musicStatus").textContent = "🎵 soundtrack paused";
+});
+
+function playMusic() {
+  music.play().catch(() => {
+    document.getElementById("musicStatus").textContent = "🎵 click the music button";
+  });
+}
+
+function toggleMusic() {
+  musicPlaying ? music.pause() : playMusic();
+}
+
+/* =========================================================
+   THEMES
+========================================================= */
+function setTheme(theme) {
+  document.body.classList.remove("green","blue","purple");
+  if (theme !== "red") document.body.classList.add(theme);
+  localStorage.setItem("birthdayTheme", theme);
+  document.getElementById("themePicker").classList.remove("show");
+}
+
+function toggleThemes() {
+  document.getElementById("themePicker").classList.toggle("show");
+}
+
+const savedTheme = localStorage.getItem("birthdayTheme");
+if (savedTheme) setTheme(savedTheme);
+
+/* =========================================================
+   MOUSE LIGHT
+========================================================= */
+document.addEventListener("pointermove", (e) => {
+  const x = (e.clientX / window.innerWidth * 100).toFixed(2) + "%";
+  const y = (e.clientY / window.innerHeight * 100).toFixed(2) + "%";
+  document.getElementById("bgGlow").style.setProperty("--mx", x);
+  document.getElementById("bgGlow").style.setProperty("--my", y);
+});
+
+/* =========================================================
+   HERO FALLBACK
+========================================================= */
+function heroFallback(img) {
+  img.src = "img3.jpeg";
+  img.onerror = () => {
+    img.style.display = "none";
+  };
+}
+
+/* =========================================================
+   GALLERY
+   Auto-detects img1..img30 with jpg/jpeg/png/webp.
+   Missing files are skipped automatically.
+========================================================= */
+
+const imageExtensions = ["jpg","jpeg","png","webp"];
+const categoryMap = {
+  3:"portraits",
+  4:"throwback",
+  5:"family",
+  6:"family",
+  7:"family",
+  8:"portraits",
+  9:"portraits",
+  10:"birthday",
+  11:"birthday",
+  12:"birthday",
+  13:"birthday",
+  14:"birthday"
+};
+
+const captionMap = {
+  3:"A quiet portrait.",
+  4:"A tiny throwback.",
+  5:"A family memory.",
+  6:"A good day, captured.",
+  7:"One frame, many memories.",
+  8:"Just being you.",
+  9:"A day worth remembering.",
+  10:"A birthday memory.",
+  11:"Birthday vibes.",
+  12:"Another birthday moment.",
+  13:"A little birthday nostalgia.",
+  14:"One more for the archive."
+};
+
+const titleMap = {
+  3:"A quiet moment",
+  4:"Then & now",
+  5:"Together",
+  6:"One of the good ones",
+  7:"The memory collage",
+  8:"Classic you",
+  9:"Out there somewhere",
+  10:"Birthday frame",
+  11:"Birthday vibes",
+  12:"Another chapter",
+  13:"A favourite frame",
+  14:"One more memory"
+};
+
+function tryLoadImage(baseName, extIndex, card, img) {
+  if (extIndex >= imageExtensions.length) {
+    card.remove();
+    refreshEmptyState();
+    return;
+  }
+
+  const ext = imageExtensions[extIndex];
+  const src = baseName + "." + ext;
+
+  img.onload = () => {
+    card.classList.add("loaded");
+    refreshEmptyState();
+  };
+
+  img.onerror = () => {
+    tryLoadImage(baseName, extIndex + 1, card, img);
+  };
+
+  img.src = src;
+}
+
+function buildGallery() {
+  const gallery = document.getElementById("gallery");
+
+  for (let i = 1; i <= 30; i++) {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "photo-card";
+    card.dataset.num = i;
+    card.dataset.category = categoryMap[i] || "portraits";
+    card.setAttribute("aria-label", "Open memory " + i);
+
+    const img = document.createElement("img");
+    img.alt = "Memory " + i;
+
+    const shade = document.createElement("div");
+    shade.className = "photo-shade";
+    shade.innerHTML =
+      "<span>" + (titleMap[i] || ("Memory " + String(i).padStart(2,"0"))) + "</span>" +
+      "<small>" + (captionMap[i] || "Add your own story to this memory.") + "</small>";
+
+    card.appendChild(img);
+    card.appendChild(shade);
+    card.addEventListener("click", () => {
+      const file = img.src;
+      openMemory(i, card.dataset.category, file);
+    });
+
+    gallery.appendChild(card);
+    tryLoadImage("img" + i, 0, card, img);
+  }
+}
+
+function refreshEmptyState() {
+  const loaded = document.querySelectorAll(".photo-card.loaded").length;
+  document.getElementById("emptyNote").style.display = loaded ? "none" : "block";
+}
+
+function filterGallery(category, button) {
+  document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+  button.classList.add("active");
+
+  document.querySelectorAll(".photo-card").forEach(card => {
+    if (!card.classList.contains("loaded")) return;
+    card.style.display =
+      category === "all" || card.dataset.category === category
+        ? "block" : "none";
+  });
+}
+
+/* =========================================================
+   MEMORY DETAIL
+========================================================= */
+function openMemory(num, category, file) {
+  const img = document.getElementById("detailImage");
+  img.src = file;
+
+  document.getElementById("detailCategory").textContent =
+    (category || "memory").toUpperCase();
+
+  document.getElementById("detailTitle").textContent =
+    titleMap[num] || ("Memory " + num);
+
+  document.getElementById("detailText").textContent =
+    captionMap[num] ||
+    "Some photographs are proof that ordinary days can become extraordinary memories.";
+
+  document.getElementById("detailMeta").textContent =
+    "Archive item " + String(num).padStart(2,"0") + " • click the photo to view it even larger";
+
+  openPage("memoryDetail");
+
+  img.onclick = () => openLightbox(file);
+}
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+function openLightbox(src) {
+  document.getElementById("lightboxImage").src = src;
+  document.getElementById("lightbox").classList.add("show");
+}
+
+function closeLightbox(event) {
+  if (event && event.target && event.target.id === "lightboxImage") return;
+  document.getElementById("lightbox").classList.remove("show");
+}
+
+/* =========================================================
+   FINAL SURPRISE
+========================================================= */
+function openGift() {
+  document.getElementById("reveal").classList.add("show");
+  playMusic();
+  burstConfetti(110);
+}
+
+/* =========================================================
+   BALLOONS
+========================================================= */
+function createBalloon() {
+  const el = document.createElement("div");
+  el.className = "balloon";
+
+  const hueChoices = [
+    Math.floor(Math.random() * 20),
+    120 + Math.floor(Math.random() * 40),
+    205 + Math.floor(Math.random() * 45),
+    275 + Math.floor(Math.random() * 40)
+  ];
+
+  const hue = hueChoices[Math.floor(Math.random()*hueChoices.length)];
+
+  el.style.left = (Math.random()*100) + "vw";
+  el.style.background =
+    "hsl(" + hue + " 65% " + (28 + Math.random()*17) + "%)";
+  el.style.animationDuration = (8 + Math.random()*8) + "s";
+  el.style.transform = "translateY(0) rotate(" + (-6+Math.random()*12) + "deg)";
+
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 18000);
+}
+
+setInterval(createBalloon, 1600);
+for (let i=0;i<4;i++) setTimeout(createBalloon, i*500);
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+function burstConfetti(count) {
+  for (let i=0;i<count;i++) {
+    const el = document.createElement("div");
+    el.className = "confetti";
+
+    el.style.left = Math.random()*100 + "vw";
+    el.style.background =
+      "hsl(" + Math.floor(Math.random()*360) + " 90% 60%)";
+
+    el.style.setProperty("--dx", (Math.random()*50-25) + "vw");
+    el.style.animationDuration = (2.2 + Math.random()*2.6) + "s";
+    el.style.animationDelay = (Math.random()*0.7) + "s";
+    el.style.transform = "rotate(" + Math.random()*360 + "deg)";
+
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5500);
+  }
+}
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    document.getElementById("lightbox").classList.remove("show");
+    document.getElementById("themePicker").classList.remove("show");
+  }
+});
+
+/* =========================================================
+   INIT
+========================================================= */
+buildGallery();
+refreshEmptyState();
+</script>
+
+</body>
+</html>
